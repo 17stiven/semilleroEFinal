@@ -26,12 +26,13 @@ public class CuentaService {
         int numeroRetiros = (int) datos.get("numeroRetiros");
         int numeroDepositos = (int) datos.get("numeroDepositos");
         int transferenciasAhorros = (int) datos.get("transferenciasAhorro");
+        int idusuario = (int) datos.get("idUsuario");
 
 if (tipo.equals("CuentaAhorros")){
-    CuentaAhorros cuenta = new CuentaAhorros(numero,saldo,propietario,numeroRetiros,numeroDepositos);
+    CuentaAhorros cuenta = new CuentaAhorros(numero,saldo,propietario,numeroRetiros,numeroDepositos, idusuario);
     repositorioCuenta.guardar(cuenta);
 }else {
-    Cuenta cuenta = new CuentaCorriente(numero,saldo, propietario,numeroRetiros,numeroDepositos,transferenciasAhorros);
+    Cuenta cuenta = new CuentaCorriente(numero,saldo, propietario,numeroRetiros,numeroDepositos,transferenciasAhorros, idusuario);
     repositorioCuenta.guardar(cuenta);
 }
 
@@ -61,13 +62,14 @@ if (tipo.equals("CuentaAhorros")){
         int numeroRetiros = (int) datos.get("numeroRetiros");
         int numeroDepositos = (int) datos.get("numeroDepositos");
         int transferenciasAhorros = (int) datos.get("transferenciasAhorro");
-//falta
+        int idusuario = (int) datos.get("idUsuario");
+
 
         if (tipo.equals("CuentaAhorros")){
-            CuentaAhorros cuenta = new CuentaAhorros(numero,saldo,propietario,numeroRetiros,numeroDepositos);
+            CuentaAhorros cuenta = new CuentaAhorros(numero,saldo,propietario,numeroRetiros,numeroDepositos, idusuario);
             repositorioCuenta.actualizar(cuenta);
         }else {
-            Cuenta cuenta = new CuentaCorriente(numero,saldo, propietario,numeroRetiros,numeroDepositos,transferenciasAhorros);
+            Cuenta cuenta = new CuentaCorriente(numero,saldo, propietario,numeroRetiros,numeroDepositos,transferenciasAhorros, idusuario);
             repositorioCuenta.actualizar(cuenta);
         }
        // Persona newPerson = new Persona(nombre, apellido, edad, identificacion, celular);
@@ -82,11 +84,13 @@ if (tipo.equals("CuentaAhorros")){
         int numeroRetiros = (int) datos.get("numeroRetiros");
         int numeroDepositos = (int) datos.get("numeroDepositos");
         int transferenciasAhorros = (int) datos.get("transferenciasAhorro");
+        int idusuario = (int) datos.get("idUsuario");
+
         if (tipo.equals("CuentaAhorros")){
-            CuentaAhorros cuenta = new CuentaAhorros(numero,saldo,propietario,numeroRetiros,numeroDepositos);
+            CuentaAhorros cuenta = new CuentaAhorros(numero,saldo,propietario,numeroRetiros,numeroDepositos, idusuario);
             repositorioCuenta.actualizarId(cuenta, id);
         }else {
-            Cuenta cuenta = new CuentaCorriente(numero,saldo, propietario,numeroRetiros,numeroDepositos,transferenciasAhorros);
+            Cuenta cuenta = new CuentaCorriente(numero,saldo, propietario,numeroRetiros,numeroDepositos,transferenciasAhorros, idusuario);
             repositorioCuenta.actualizarId(cuenta, id);
         }
       //  Persona newPerson = new Persona(nombre, apellido, edad, identificacion, celular);

@@ -138,13 +138,14 @@ public class CuentaRepository implements Repositorio {
                 int numeroRetiros = resultadoConsulta.getInt("numeroRetiros");
                 int numeroDepositos = resultadoConsulta.getInt("numeroDepositos");
                 int transferenciasAhorro = resultadoConsulta.getInt("transferenciasAhorro");
+                int idTransaccion = resultadoConsulta.getInt("idTransaccion");
 
 
 
                 if (tipoCuenta.equals("CuentaCorriente")) {
-                    return new CuentaCorriente(numCuenta,saldo,propietario, numeroRetiros,numeroDepositos, transferenciasAhorro);
+                    return new CuentaCorriente(numCuenta,saldo,propietario, numeroRetiros,numeroDepositos, transferenciasAhorro, idTransaccion);
                 } else {
-                    return new CuentaAhorros(numeroCuenta,saldo,propietario,numeroRetiros,numeroDepositos);
+                    return new CuentaAhorros(numeroCuenta,saldo,propietario,numeroRetiros,numeroDepositos,idTransaccion);
                 }
             }
 
@@ -174,12 +175,14 @@ public class CuentaRepository implements Repositorio {
                     int numeroRetiros = resultadoConsulta.getInt("numeroRetiros");
                     int numeroDepositos = resultadoConsulta.getInt("numeroDepositos");
                     int transferenciasAhorro = resultadoConsulta.getInt("transferenciasAhorro");
+                    int idtransaccion = resultadoConsulta.getInt("idTransaccion");
 
-if (tipo.equals("CuentaAhorros")){
-    CuentaAhorros cuenta=new CuentaAhorros(id,numero,saldo,propietario,numeroRetiros,numeroDepositos);
+
+                    if (tipo.equals("CuentaAhorros")){
+    CuentaAhorros cuenta=new CuentaAhorros(id,numero,saldo,propietario,numeroRetiros,numeroDepositos, idtransaccion);
     cuentas.add(cuenta);
 }else {
-    CuentaCorriente cuenta=new CuentaCorriente(id,numero,saldo,propietario,numeroRetiros,numeroDepositos,transferenciasAhorro);
+    CuentaCorriente cuenta=new CuentaCorriente(id,numero,saldo,propietario,numeroRetiros,numeroDepositos,transferenciasAhorro,idtransaccion);
 cuentas.add(cuenta);
 }
                    // cuenta = new Persona(id, nombre, apellido, edad, identificacion, celular);

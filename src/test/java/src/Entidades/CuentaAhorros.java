@@ -16,12 +16,12 @@ public class CuentaAhorros extends Cuenta {
 
     }
 
-    public CuentaAhorros(int id, String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos) {
-        super(id, numeroCuenta, saldo, propietario, numRetiros, numDepositos);
+    public CuentaAhorros(int id, String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int idusuario) {
+        super(id, numeroCuenta, saldo, propietario, numRetiros, numDepositos, idusuario);
     }
 
-    public CuentaAhorros(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos) {
-        super(numeroCuenta, saldo, propietario, numRetiros, numDepositos);
+    public CuentaAhorros(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int idusuario) {
+        super(numeroCuenta, saldo, propietario, numRetiros, numDepositos, idusuario);
 
     }
 

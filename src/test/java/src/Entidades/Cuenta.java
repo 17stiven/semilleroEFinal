@@ -4,6 +4,7 @@ import src.Excepciones.*;
 
 public abstract class Cuenta {
     protected String numeroCuenta;
+    private int idUsuario;
     protected double saldo;
     //protected String tipo;
     protected String propietario;
@@ -11,29 +12,35 @@ public abstract class Cuenta {
     protected int numDepositos=0;
     protected int id;
 
-    public Cuenta(int id, String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos) {
+    public Cuenta(int id, String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int idusuario) {
         this.numeroCuenta = numeroCuenta;
         this.saldo = saldo;
         this.propietario = propietario;
         this.numRetiros = numRetiros;
         this.numDepositos = numDepositos;
         this.id = id;
+        this.idUsuario=idusuario;
     }
 
     public int getId() {
         return id;
     }
 
-    public Cuenta(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos) {
+    public Cuenta(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int idUsuario) {
         this.numeroCuenta = numeroCuenta;
         this.saldo = saldo;
         this.propietario = propietario;
         this.numRetiros = numRetiros;
         this.numDepositos = numDepositos;
+        this.idUsuario=idUsuario;
     }
 
     public int getNumRetiros() {
         return numRetiros;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
     public int getNumDepositos() {

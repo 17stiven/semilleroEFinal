@@ -10,13 +10,13 @@ public class CuentaCorriente extends Cuenta{
         this.numTransferenciasAhorro = numTransferenciasAhorro;
     }
 
-    public CuentaCorriente(int id, String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int numTransferenciasAhorro) {
-        super(id, numeroCuenta, saldo, propietario, numRetiros, numDepositos);
+    public CuentaCorriente(int id, String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int numTransferenciasAhorro, int idUusario) {
+        super(id, numeroCuenta, saldo, propietario, numRetiros, numDepositos, idUusario);
         this.numTransferenciasAhorro = numTransferenciasAhorro;
     }
 
-    public CuentaCorriente(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int numTransferenciasAhorro) {
-        super(numeroCuenta, saldo, propietario, numRetiros, numDepositos);
+    public CuentaCorriente(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int numTransferenciasAhorro, int idUsuario) {
+        super(numeroCuenta, saldo, propietario, numRetiros, numDepositos, idUsuario);
         this.numTransferenciasAhorro = numTransferenciasAhorro;
     }
 
