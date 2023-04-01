@@ -2,40 +2,55 @@ package src.Entidades;
 
 import src.CuentaCorriente;
 import src.Entidades.Cuenta;
+import src.Excepciones.LimiteRetirosException;
+import src.Excepciones.SaldoInsuficienteException;
+import src.Excepciones.ValorInvalidoException;
+import src.Excepciones.ValorNegativoException;
 
 public class CuentaAhorros extends Cuenta {
-    private double tasaInteres;
-private int numDepositos=0;
-private int numRetiros=0;
-    public CuentaAhorros(String numeroCuenta, double saldo, String propietario, double tasaInteres) {
+
+//private int numDepositos=0;
+//private int numRetiros=0;
+    public CuentaAhorros(String numeroCuenta, double saldo, String propietario) {
         super(numeroCuenta, saldo, propietario);
-        this.tasaInteres = tasaInteres;
+
     }
 
-    public double getTasaInteres() {
-        return tasaInteres;
+    public CuentaAhorros(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos) {
+        super(numeroCuenta, saldo, propietario, numRetiros, numDepositos);
+
     }
 
-    public void setTasaInteres(double tasaInteres) {
-        this.tasaInteres = tasaInteres;
-    }
+
+
+
 
     @Override
-    public boolean depositar(double monto) {
+    public boolean depositar(double monto) throws ValorNegativoException {
         boolean resultado = super.depositar(monto);
         numDepositos++;
-        if (resultado && (numDepositos < 2)) {
-            double bonificacion = monto * 0.005;
-            saldo += bonificacion;
+        if (resultado && (numDepositos <= 2)) {
+            double valorAdicional = monto * 0.05;
+            saldo += valorAdicional;
+            System.out.println("Se ha adicionado un valor a su saldo del 0.5% de "+valorAdicional);
         }
         return resultado;
     }
 
     @Override
-    public boolean retirar(double monto) {
-        if (numRetiros >= 3) {
-            monto = monto * 1.01; // Se agrega un 1% al monto a retirar si se han hecho más de 3 retiros
+    public boolean retirar(double monto) throws LimiteRetirosException, ValorInvalidoException {
+        if (monto<0)throw new ValorNegativoException("El monto no puede ser negativo");
+        if (saldo<monto) throw new SaldoInsuficienteException("No tiene saldo suficiente para este retiro");
+        if (numRetiros > 3) {
+            double valorRetiro=monto*0.01;
+          //  monto = monto * 1.01; // Se agrega un 1% al monto a retirar si se han hecho más de 3 retiros
+            System.out.println("Valor a retirar: "+monto);
+            System.out.println("Costo del retiro: "+valorRetiro);
+            monto=monto+valorRetiro;
+            System.out.println("Total: "+monto);
         }
+        System.out.println("Valor a retirar: "+monto);
+        System.out.println("Costo del retiro: 0");
         boolean seRetiro = super.retirar(monto);
         if (seRetiro) {
             numRetiros++;
@@ -44,18 +59,24 @@ private int numRetiros=0;
     }
 
 
-    public boolean transferir(Cuenta cuentaDestino, double monto) {
+    public boolean transferir(Cuenta cuentaDestino, double monto) throws ValorNegativoException, SaldoInsuficienteException {
+
         double valorCobro = 0;
-        boolean seTransfirio = false;
         if (this.getSaldo() >= monto) {
-            if (cuentaDestino instanceof CuentaCorriente) {
-                valorCobro = monto * 0.015; // Se cobra un 1.5% al transferir a una cuenta corriente
+            if (cuentaDestino.getTipo().equals("CuentaCorriente")) {
+                valorCobro = monto * 0.015; // 1.5% adicional
             }
-            this.retirar(monto);
-            cuentaDestino.depositar(monto - valorCobro);
-            seTransfirio = true;
+            if (this.getSaldo()>=(monto+valorCobro)){
+                saldo=saldo-monto-valorCobro;
+                cuentaDestino.depositar(monto);
+                return true;
+            }
+            throw new SaldoInsuficienteException("No tiene saldo suficiente para completar esta operación");
+
+
+
         }
-        return seTransfirio;
+        throw new SaldoInsuficienteException("No tiene saldo suficiente para esta operación");
     }
 }
 
