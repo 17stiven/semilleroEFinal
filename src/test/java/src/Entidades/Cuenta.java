@@ -9,6 +9,20 @@ public abstract class Cuenta {
     protected String propietario;
     protected int numRetiros=0;
     protected int numDepositos=0;
+    protected int id;
+
+    public Cuenta(int id, String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos) {
+        this.numeroCuenta = numeroCuenta;
+        this.saldo = saldo;
+        this.propietario = propietario;
+        this.numRetiros = numRetiros;
+        this.numDepositos = numDepositos;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public Cuenta(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos) {
         this.numeroCuenta = numeroCuenta;
@@ -79,4 +93,16 @@ public abstract class Cuenta {
         return true;
     };
     public abstract boolean transferir(Cuenta destino, double cantidad) throws CuentaInvalidaException, ValorInvalidoException, LimiteTransferenciasException;
+
+    @Override
+    public String toString() {
+        return "Cuenta{" +
+                "numeroCuenta='" + numeroCuenta + '\'' +
+                ", saldo=" + saldo +
+                ", propietario='" + propietario + '\'' +
+                ", numRetiros=" + numRetiros +
+                ", numDepositos=" + numDepositos +
+                ", id=" + id +
+                '}';
+    }
 }

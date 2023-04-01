@@ -1,6 +1,6 @@
 package src.Entidades;
 
-import src.CuentaCorriente;
+
 import src.Entidades.Cuenta;
 import src.Excepciones.LimiteRetirosException;
 import src.Excepciones.SaldoInsuficienteException;
@@ -14,6 +14,10 @@ public class CuentaAhorros extends Cuenta {
     public CuentaAhorros(String numeroCuenta, double saldo, String propietario) {
         super(numeroCuenta, saldo, propietario);
 
+    }
+
+    public CuentaAhorros(int id, String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos) {
+        super(id, numeroCuenta, saldo, propietario, numRetiros, numDepositos);
     }
 
     public CuentaAhorros(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos) {
@@ -43,7 +47,7 @@ public class CuentaAhorros extends Cuenta {
         if (saldo<monto) throw new SaldoInsuficienteException("No tiene saldo suficiente para este retiro");
         if (numRetiros > 3) {
             double valorRetiro=monto*0.01;
-          //  monto = monto * 1.01; // Se agrega un 1% al monto a retirar si se han hecho más de 3 retiros
+
             System.out.println("Valor a retirar: "+monto);
             System.out.println("Costo del retiro: "+valorRetiro);
             monto=monto+valorRetiro;
@@ -77,6 +81,18 @@ public class CuentaAhorros extends Cuenta {
 
         }
         throw new SaldoInsuficienteException("No tiene saldo suficiente para esta operación");
+    }
+
+    @Override
+    public String toString() {
+        return "CuentaAhorros: " +
+                "numeroCuenta='" + numeroCuenta + '\'' +
+                "Tipo cuenta=" + getTipo() +
+                ", saldo=" + saldo +
+                ", propietario='" + propietario + '\'' +
+                ", numRetiros=" + numRetiros +
+                ", numDepositos=" + numDepositos +
+                ", id=" + id;
     }
 }
 

@@ -13,7 +13,7 @@ public interface Repositorio {
     public void actualizar(Object objeto);
 
     public Object buscar(String identificador);
-
+    public void actualizarId(Object objeto, String id);
     public List<?> listar();
 }
 

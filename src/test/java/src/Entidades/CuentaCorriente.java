@@ -5,8 +5,13 @@ import src.Excepciones.*;
 public class CuentaCorriente extends Cuenta{
     private int numTransferenciasAhorro=0;
 
-    public CuentaCorriente(String numeroCuenta, double saldo, String propietario, int numTransferenciasAhorro) {
+    public CuentaCorriente(String numeroCuenta, double saldo, String propietario) {
         super(numeroCuenta, saldo, propietario);
+        this.numTransferenciasAhorro = numTransferenciasAhorro;
+    }
+
+    public CuentaCorriente(int id, String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int numTransferenciasAhorro) {
+        super(id, numeroCuenta, saldo, propietario, numRetiros, numDepositos);
         this.numTransferenciasAhorro = numTransferenciasAhorro;
     }
 
@@ -48,5 +53,18 @@ return true;
         }
 
        // return false;
+    }
+
+    @Override
+    public String toString() {
+        return "CuentaCorriente: " +
+                "numero Transferencias Ahorro=" + numTransferenciasAhorro +
+                "Tipo de cuenta=" + getTipo() +
+                ", numeroCuenta='" + numeroCuenta + '\'' +
+                ", saldo=" + saldo +
+                ", propietario='" + propietario + '\'' +
+                ", numRetiros=" + numRetiros +
+                ", numDepositos=" + numDepositos +
+                ", id=" + id;
     }
 }
