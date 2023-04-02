@@ -20,6 +20,14 @@ public class CuentaAhorros extends Cuenta {
         super(id, numeroCuenta, saldo, propietario, numRetiros, numDepositos, idusuario);
     }
 
+    public CuentaAhorros(String numeroCuenta, int idUsuario, double saldo) {
+        super(numeroCuenta, idUsuario, saldo);
+    }
+
+    public CuentaAhorros(String numeroCuenta, int idUsuario, double saldo, int id) {
+        super(numeroCuenta, idUsuario, saldo, id);
+    }
+
     public CuentaAhorros(String numeroCuenta, double saldo, String propietario, int numRetiros, int numDepositos, int idusuario) {
         super(numeroCuenta, saldo, propietario, numRetiros, numDepositos, idusuario);
 

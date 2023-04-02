@@ -19,20 +19,17 @@ public class CuentaService {
     }
 
     public void guardarCuenta(Map datos) {
-        String tipo = (String) datos.get("tipo");
-        String numero = (String) datos.get("numero");
+        String tipo = (String) datos.get("tipo_cuenta");
+        String numero = (String) datos.get("numero_cuenta");
         float saldo = (float) datos.get("saldo");
-        String propietario = (String) datos.get("propietario");
-        int numeroRetiros = (int) datos.get("numeroRetiros");
-        int numeroDepositos = (int) datos.get("numeroDepositos");
-        int transferenciasAhorros = (int) datos.get("transferenciasAhorro");
-        int idusuario = (int) datos.get("idUsuario");
+        int usuario = (int) datos.get("id_usuario");
+
 
 if (tipo.equals("CuentaAhorros")){
-    CuentaAhorros cuenta = new CuentaAhorros(numero,saldo,propietario,numeroRetiros,numeroDepositos, idusuario);
+    CuentaAhorros cuenta = new CuentaAhorros(numero,usuario,saldo);
     repositorioCuenta.guardar(cuenta);
 }else {
-    Cuenta cuenta = new CuentaCorriente(numero,saldo, propietario,numeroRetiros,numeroDepositos,transferenciasAhorros, idusuario);
+    Cuenta cuenta = new CuentaCorriente(numero,usuario,saldo);
     repositorioCuenta.guardar(cuenta);
 }
 
@@ -43,11 +40,11 @@ if (tipo.equals("CuentaAhorros")){
     }
 
     public Cuenta buscarCuenta(String numero) throws Exception {
-        Object persona = repositorioCuenta.buscar(numero);
-        if (persona == null) {
-            throw new Exception("No se encontro la persona");
+        Object cuenta = repositorioCuenta.buscar(numero);
+        if (cuenta == null) {
+            throw new Exception("No se encontro la cuenta");
         }
-        return (Cuenta) persona;
+        return (Cuenta) cuenta;
     }
 
     public void eliminarCuenta(String numero) {
@@ -55,21 +52,17 @@ if (tipo.equals("CuentaAhorros")){
     }
 
     public void actualizarCuenta(Map datos) {
-        String tipo = (String) datos.get("tipo");
-        String numero = (String) datos.get("numero");
+        String tipo = (String) datos.get("tipo_cuenta");
+        String numero = (String) datos.get("numero_cuenta");
         float saldo = (float) datos.get("saldo");
-        String propietario = (String) datos.get("propietario");
-        int numeroRetiros = (int) datos.get("numeroRetiros");
-        int numeroDepositos = (int) datos.get("numeroDepositos");
-        int transferenciasAhorros = (int) datos.get("transferenciasAhorro");
-        int idusuario = (int) datos.get("idUsuario");
+        int usuario = (int) datos.get("id_usuario");
 
 
         if (tipo.equals("CuentaAhorros")){
-            CuentaAhorros cuenta = new CuentaAhorros(numero,saldo,propietario,numeroRetiros,numeroDepositos, idusuario);
+            CuentaAhorros cuenta = new CuentaAhorros(numero,usuario,saldo);
             repositorioCuenta.actualizar(cuenta);
         }else {
-            Cuenta cuenta = new CuentaCorriente(numero,saldo, propietario,numeroRetiros,numeroDepositos,transferenciasAhorros, idusuario);
+            Cuenta cuenta = new CuentaCorriente(numero,usuario,saldo);
             repositorioCuenta.actualizar(cuenta);
         }
        // Persona newPerson = new Persona(nombre, apellido, edad, identificacion, celular);
@@ -77,20 +70,17 @@ if (tipo.equals("CuentaAhorros")){
     }
 
     public void actualizarCuentaId(Map datos, String id) {
-        String tipo = (String) datos.get("tipo");
-        String numero = (String) datos.get("numero");
+        String tipo = (String) datos.get("tipo_cuenta");
+        String numero = (String) datos.get("numero_cuenta");
         float saldo = (float) datos.get("saldo");
-        String propietario = (String) datos.get("propietario");
-        int numeroRetiros = (int) datos.get("numeroRetiros");
-        int numeroDepositos = (int) datos.get("numeroDepositos");
-        int transferenciasAhorros = (int) datos.get("transferenciasAhorro");
-        int idusuario = (int) datos.get("idUsuario");
+
+        int idusuario = (int) datos.get("id_usuario");
 
         if (tipo.equals("CuentaAhorros")){
-            CuentaAhorros cuenta = new CuentaAhorros(numero,saldo,propietario,numeroRetiros,numeroDepositos, idusuario);
+            CuentaAhorros cuenta = new CuentaAhorros(numero,idusuario,saldo );
             repositorioCuenta.actualizarId(cuenta, id);
         }else {
-            Cuenta cuenta = new CuentaCorriente(numero,saldo, propietario,numeroRetiros,numeroDepositos,transferenciasAhorros, idusuario);
+            Cuenta cuenta = new CuentaCorriente(numero,idusuario,saldo);
             repositorioCuenta.actualizarId(cuenta, id);
         }
       //  Persona newPerson = new Persona(nombre, apellido, edad, identificacion, celular);

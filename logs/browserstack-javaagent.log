@@ -16,3 +16,9 @@
 15:42:13.022 [main] INFO  c.b.config.BrowserStackConfig - INFO
 15:42:13.176 [main] INFO  c.b.config.BrowserStackConfig - INFO
 15:42:13.191 [main] INFO  c.b.config.BrowserStackConfig - INFO
+09:46:40.036 [main] INFO  c.b.config.BrowserStackConfig - INFO
+09:46:40.182 [main] INFO  c.b.config.BrowserStackConfig - WARN
+09:46:40.207 [main] INFO  c.b.config.BrowserStackConfig - WARN
+09:46:57.364 [main] INFO  c.b.config.BrowserStackConfig - INFO
+09:46:57.501 [main] INFO  c.b.config.BrowserStackConfig - WARN
+09:46:57.522 [main] INFO  c.b.config.BrowserStackConfig - WARN

@@ -35,6 +35,13 @@ public abstract class Cuenta {
         this.idUsuario=idUsuario;
     }
 
+    public Cuenta(String numeroCuenta, int idUsuario, double saldo, int id) {
+        this.numeroCuenta = numeroCuenta;
+        this.idUsuario = idUsuario;
+        this.saldo = saldo;
+        this.id = id;
+    }
+
     public int getNumRetiros() {
         return numRetiros;
     }
@@ -71,6 +78,12 @@ public abstract class Cuenta {
 
     public double getSaldo() {
         return saldo;
+    }
+
+    public Cuenta(String numeroCuenta, int idUsuario, double saldo) {
+        this.numeroCuenta = numeroCuenta;
+        this.idUsuario = idUsuario;
+        this.saldo = saldo;
     }
 
     public void setSaldo(double saldo) {

@@ -1,17 +1,22 @@
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import src.Controlador.CuentaController;
+import src.Controlador.UsuarioController;
 import src.CuentaService;
 import src.Entidades.Cuenta;
 
 import src.Entidades.CuentaAhorros;
 import src.Entidades.CuentaCorriente;
+import src.Entidades.Usuario;
 import src.Excepciones.CuentaInvalidaException;
 import src.Excepciones.LimiteRetirosException;
 import src.Excepciones.ValorInvalidoException;
 import src.Excepciones.ValorNegativoException;
 import src.Repositorio.CuentaRepository;
+import src.Repositorio.UsuarioRepository;
+import javax.servlet.Servlet;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -66,9 +71,35 @@ public class App
         }
 
 
+        UsuarioRepository n=new UsuarioRepository();
+        n.guardar(new Usuario("omar", "gimenes","1111"));
+        n.guardar(new Usuario("lina", "garcia","555"));
+        n.guardar(new Usuario("yeny", "arcila","22222"));
+        n.guardar(new Usuario("diego", "jimenes","8888"));
+CuentaRepository c=new CuentaRepository();
+c.guardar(new CuentaAhorros("987654321", 2, 500.0, 2));
+c.guardar(new CuentaAhorros("246810121", 5, 250.0, 5));
+c.guardar(new CuentaCorriente("432156789", 4, 1000.0, 4));
+c.guardar(new CuentaCorriente("987654321", 2, 500.0, 2));
 
+        Server server = new Server(8888);
+        server.setHandler(new DefaultHandler());
 
+        ServletContextHandler context = new ServletContextHandler();
 
+        context.setContextPath("/");
+
+        context.addServlet(String.valueOf(UsuarioController.class), "/usuario/*");
+        context.addServlet(String.valueOf(CuentaController.class), "/cuenta/*");
+
+        server.setHandler(context);
+
+        try {
+            server.start();
+            server.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
 

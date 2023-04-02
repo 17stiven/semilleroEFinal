@@ -33,7 +33,7 @@ public class UsuarioRepository implements Repositorio {
                 Usuario usuario = (Usuario) objeto;
                 String sentenciaSql = "INSERT INTO usuarios (nombre, apellido, cedula ) " +
                         " VALUES('" + usuario.getNombre() + "', '" + usuario.getApellido()
-                        + "', "  + usuario.getCedula() + "' "  +  ");";
+                        + "', '"  + usuario.getCedula() + "' "  +  ");";
                 Statement sentencia = conexion.createStatement();
                 System.out.println(sentenciaSql);
                 sentencia.execute(sentenciaSql);
